@@ -30,7 +30,56 @@ GLuint colorbuffer;
 // GLSL program from the shaders
 GLuint programID;
 
+/* main que eu tenho onde fa√ßo o loop de um jogo onde ainda nao ha movimentos laterais(essa parte de pressionar as pe√ßas  e  do opengl)
+    int * mapa = (int*)calloc(colunas * linhas, sizeof(int));
+    int* teste = create_fila(4);
+    int clock = 0;
+    while (inserir_pe√ßa(teste[0], (rand() % 4 + 1), mapa)) {
+        posy = linhas -1;
+        printf("\n fila: ");
+        for (int i = 0; i < 4; i++) {
+            printf("%d ", teste[i]);
+        }
 
+
+        printf("mapa:  \n");
+        display_mapa(mapa);
+        while (true) {
+            
+                if (anda_baixo(mapa)) {
+                    posy = posy - 1;
+                }
+                if (!anda_baixo(mapa)) {
+                    if (!(linha_cheia(mapa, posy)|| linha_cheia(mapa, posy +1)) || linha_cheia(mapa, posy +2) || linha_cheia(mapa, posy + 3) || linha_cheia(mapa, posy + -1) || linha_cheia(mapa, posy - 2) || linha_cheia(mapa, posy -3)){
+                        anda_fila(teste, 4);
+                        break;
+                    }
+                    else {
+                        for (int i = 0; i < linhas; i++) {
+                            if (linha_cheia(mapa, i)) {
+                                apaga_linha(mapa, i);
+                                i = 0;
+                            }
+                            anda_fila(teste, 4);
+                            break;
+                        }
+                    }
+                }
+
+            
+            //if glwpress_right anda_direita and if true posx = posx+1;
+            //if glwpress_left anda_esquerda and if true posx = posx-1;
+        }
+    }
+    display_mapa(mapa);
+
+    
+    
+    
+    return 0;
+}
+
+*/
 GLint WindowWidth = 600;
 GLint WindowHeight = 600;
 GLint LastWindowWidth = 600;
@@ -45,7 +94,7 @@ float mouse_y = 0;
 //vamos ter flags para identificar o que estamos a ver no momento
 bool is_menu_view = true;
 bool is_game_view = false;
-bool is_options_view = false; // talvez numa fase mais avanÁada poderemos implementar opÁıes para definir a velocidade das peÁas a cairem, sons e etc
+bool is_options_view = false; // talvez numa fase mais avan√ßada poderemos implementar op√ß√µes para definir a velocidade das pe√ßas a cairem, sons e etc
 bool is_scores_view = false;
 bool is_name_view = false;
 
@@ -86,25 +135,25 @@ bool is_F_down;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_UP && (action == GLFW_PRESS || action == GLFW_REPEAT)) { // clicar na tecla UP e/ou continuar a clicar
-		//fazer movimentos com as peÁas
+		//fazer movimentos com as pe√ßas
 	}
 
 	if (key == GLFW_KEY_DOWN && (action == GLFW_PRESS || action == GLFW_REPEAT)) {// clicar na tecla DOWN e/ou continuar a clicar
-		//fazer movimentos com as peÁas
+		//fazer movimentos com as pe√ßas
 	}
 
 	if (key == GLFW_KEY_LEFT && (action == GLFW_PRESS || action == GLFW_REPEAT)) {// clicar na tecla LEFT e/ou continuar a clicar
-		//fazer movimentos com as peÁas
+		//fazer movimentos com as pe√ßas
 	}
 
 	if (key == GLFW_KEY_RIGHT && (action == GLFW_PRESS || action == GLFW_REPEAT)) {// clicar na tecla RIGHT e/ou continuar a clicar
-		//fazer movimentos com as peÁas
+		//fazer movimentos com as pe√ßas
 	}
 	if (key == GLFW_KEY_A && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		//fazer a peÁa rodar 
+		//fazer a pe√ßa rodar 
 	}
 	if (key == GLFW_KEY_D && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		//fazer a peÁa rodar 
+		//fazer a pe√ßa rodar 
 	}
 	if (key == GLFW_KEY_ESCAPE && (action == GLFW_PRESS)) {//clicar na tecla ESCAPE para 
 		int width_mm, height_mm;
@@ -131,7 +180,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 void character_callback(GLFWwindow* window, unsigned int codepoint)
 {
-	if (is_name_view) { // se estiver na view de escrever o nome ent„o escrevemos o nome
+	if (is_name_view) { // se estiver na view de escrever o nome ent√£o escrevemos o nome
 
 	}
 }
@@ -162,7 +211,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 	}
 }
 
-//TODO fazer com que as proporÁıes fiquem iguais caso faÁamos o resize
+//TODO fazer com que as propor√ß√µes fiquem iguais caso fa√ßamos o resize
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) //para fazer o jogo responsivo
 {
 	t = t*height / (float)WindowHeight;
